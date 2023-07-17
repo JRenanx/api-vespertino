@@ -1,0 +1,21 @@
+<section class="container">
+
+    <table cellpadding=0 and cellspacing=0>
+        <thead>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Permissoes</th>
+            <th>Açoes</th>
+        </thead>
+        <tr *ngFor="let user of users">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td [ngClass]="user.roles">{{user.roles}}</td>
+            <td class="imgs">
+                <img src="../../../../assets/icons/editar.png" alt="" width="20px" >
+                <img src="../../../../../assets/icons/excluir.png" alt="" width="20px">
+            </td>
+        </tr>
+    </table>
+
+</section>
