@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { HomeModule } from './home/home.module';
 import { MenuModule } from './menu/menu.module';
 import { UserModule } from './user/user.module';
+import { CountryModule } from './country/country.module';
+import { TrackModule } from './track/track.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { UserModule } from './user/user.module';
     HttpClientModule,
     HomeModule,
     MenuModule,
-    UserModule
+    UserModule,
+    CountryModule,
+    TrackModule
   ],
   providers: [],
   bootstrap: [AppComponent]

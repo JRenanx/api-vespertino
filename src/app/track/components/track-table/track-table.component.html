@@ -1,0 +1,21 @@
+<section class="container">
+
+    <table cellpadding=0 and cellspacing=0>
+        <thead>
+            <th>Nome</th>
+            <th>Tamanho</th>
+            <th>Pais</th>
+            <th>Açoes</th>
+        </thead>
+        <tr *ngFor="let track of tracks">
+            <td>{{track.name}}</td>
+            <td>{{track.size}}</td>
+            <td>{{track.country.name}}</td>
+            <td class="imgs">
+                <img src="../../../../assets/icons/editar.png" alt="" width="20px" (click)="selectTrack(track)" >
+                <img src="../../../../assets/icons/excluir.png" alt="" width="20px"(clickl)="delete(track)"  >
+            </td>
+        </tr>
+    </table>
+
+</section>

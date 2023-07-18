@@ -1,10 +1,10 @@
+
 .container {
-  width: 500px;
+  width: 65%;
   margin: 0 auto;
   padding: 25px;
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
-  box-shadow: 0 5px 70px rgba(0, 0, 0, 0.3);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -19,12 +19,16 @@ label {
 
 input[type="text"],
 input[type="password"],
-select {
-  width: 100%;
+select {  
+  background-color: rgb(230, 230, 230);
+  width: 90%;
   padding: 8px;
   font-size: 16px;
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 4px;
+  outline: 0;
+  border: 0px;
+  border-radius: 0;
+  margin: 5px 10px;
+  border-bottom: 1px solid black;
 }
 
 .radio-button,
@@ -46,24 +50,12 @@ select {
   gap: 10px;
 }
 
-.imgs {
+.find-button{
   display: flex;
-  img {
+  button{
+    background: none;
+    border: 0;
     cursor: pointer;
   }
 }
 
-.form-group {
-    position: relative;
-    
-    .label-with-icon {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      
-      .imgs {
-        position: absolute;
-        top: -15px;
-        right: 0;
-      }
-    }}

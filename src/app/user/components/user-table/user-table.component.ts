@@ -15,17 +15,18 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.listAll().subscribe((data) => {
-     this.users = data
-    });
-    
-  }
-
-  public getUsersByName(){
-    this.service.selectUserEvent.subscribe((name) => {
-      this.service.getUsersByName(name).subscribe((data) => {
-        this.users = data;
-      });
+      this.users = data;
     });
   }
 
+  public selectUser(user: User) {
+    let newUser = {...user};
+    this.service.selectUser(newUser);
+  }
+
+  public delete(user: User) {
+    this.service.delete(user).subscribe(() => {
+      this.service.listAll().subscribe((data) => (this.users = data));
+    });
+  }
 }

@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Cadastrar Pais:</h1>
+    <form #form>
+        <label for="name">Pais:
+            <div class="find-button">
+                <input type="text" name="name" id="name" [(ngModel)]="country.name" />
+                <button type="button" (click)="getCountrysByName()">
+                    <img src="../../../../../assets/icons/filtrar.png" alt="" width="20px"/>
+                </button>
+            </div>
+        </label>
+        <div>
+            <button class="btn" type="button" (click)="insertCountry()" >Salvar</button>
+            </div>
+    </form>
+</div>

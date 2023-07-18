@@ -1,0 +1,18 @@
+<section class="container">
+
+    <table cellpadding=0 and cellspacing=0>
+        <thead>
+            <th>Nome</th>
+            <th>Açoes</th>
+        </thead>
+        <tr *ngFor="let country of countrys">
+            <td>{{country.name}}</td>
+
+            <td class="imgs">
+                <img src="../../../../assets/icons/editar.png" alt="" width="20px" (click)="selectCountry(country)">
+                <img src="../../../../assets/icons/excluir.png" alt="" width="20px" (click)="delete(country)" >
+            </td>
+        </tr>
+    </table>
+
+</section>

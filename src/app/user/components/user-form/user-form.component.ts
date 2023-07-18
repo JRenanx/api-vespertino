@@ -7,20 +7,36 @@ import { UserService } from '../../services/user.service';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
 })
-export class UserFormComponent {
-  public edit: boolean = false;
-
-  public user: User = {
-    name: '',
-    id: 0,
-    email: '',
-    password: '',
-    roles: '',
-  };
+export class UserFormComponent implements OnInit {
+  
+  public users!: User[];
+  public user = {} as User;
 
   constructor(private service: UserService) {}
 
+  ngOnInit(): void {
+    this.service.emitEvent.subscribe({
+      next: (res: User) => {
+        this.user = res;
+      },
+    });
+  }
+
+  public insertUser() {
+    if (this.user.id) {
+      this.service.update(this.user).subscribe((data) => {
+        this.user = {} as User;
+      });
+    } else {
+      this.service.insert(this.user).subscribe((data) => {
+        this.user = {} as User;
+      });
+    }
+  }
+
   public getUsersByName() {
-    this.service.getUsersByName(this.user.name);
+    this.service.getUsersByName(this.user.name).subscribe((data) => {
+      this.users = data;
+    });
   }
 }

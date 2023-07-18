@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Cadastrar Pista:</h1>
+    <form #form>
+        <label for="name">Nome:
+            <div class="find-button">
+                <input type="text" name="name" id="name" [(ngModel)]="track.name" />
+                <button type="button" (click)="getTracksByName()">
+                    <img src="../../../../../assets/icons/filtrar.png" alt="" width="20px"/>
+                </button>
+            </div>
+        </label>
+        <label for="size">Tamanho:
+            <div class="find-button">
+                <input type="number" name="size" id="size" [(ngModel)]="track.size" />
+                            </div>
+        </label>
+        <div>
+            <button class="btn" type="button" (click)="insertTrack()" >Salvar</button>
+            </div>
+    </form>
+</div>

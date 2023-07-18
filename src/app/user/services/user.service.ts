@@ -1,48 +1,65 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  
   constructor(private http: HttpClient) {}
 
   private userSubject = new Subject<User[]>();
-  public selectUserEvent = new EventEmitter();
+  public emitEvent = new EventEmitter();
   private urlBase: string = 'http://localhost:8080/users';
 
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+
   public listAll(): Observable<User[]> {
-    this.http.get<User[]>(this.urlBase).subscribe(users => this.userSubject.next(users));
+    this.http
+      .get<User[]>(this.urlBase)
+      .subscribe((users) => this.userSubject.next(users));
     return this.userSubject.asObservable();
   }
 
   public getUsersByName(name: string): Observable<User[]> {
-    let url = `${this.urlBase}/name/${name}`;
-    return this.http.get<User[]>(url);
+    if (name == '') {
+      return this.listAll();
+    } else {
+      let url = `${this.urlBase}/name/${name}`;
+      this.http
+        .get<User[]>(url)
+        .subscribe((users) => this.userSubject.next(users));
+      return this.userSubject.asObservable();
+    }
   }
 
-  public addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.urlBase, user);
+  public insert(user: User): Observable<User> {
+    return this.http.post<User>(this.urlBase, user, this.httpOptions).pipe(
+      tap(() => {
+        this.listAll();
+      })
+    );
   }
 
-  public getUserById(id: number): Observable<User> {
-    let url = `${this.urlBase}/${id}`;
-    return this.http.get<User>(url);
+  public update(user: User): Observable<User> {
+    return this.http
+      .put<User>(`${this.urlBase}/${user.id}`, user, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this.listAll();
+        })
+      );
   }
 
-  public updateUser(user: User): Observable<User> {
-    let url = `${this.urlBase}/${user.id}`;
-    return this.http.put<User>(url, user);
-  }
+  public delete(user: User): Observable<void> {
+    return this.http.delete<void>(`${this.urlBase}/${user.id}`);
+  };
 
-  public deleteUser(userId: number): Observable<void> {
-    const url = `${this.urlBase}/${userId}`;
-    return this.http.delete<void>(url);
-  }
-
-  public getName(name: string) {
-    this.selectUserEvent.emit(name)
-  }
+  public selectUser(user: User) {
+    this.emitEvent.emit(user);
+  };
 }
