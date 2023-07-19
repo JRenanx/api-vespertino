@@ -59,7 +59,7 @@ export class UserService {
     return this.http.delete<void>(`${this.urlBase}/${user.id}`);
   };
 
-  public selectUser(user: User) {
+  public selectItem(user: User) {
     this.emitEvent.emit(user);
   };
 }

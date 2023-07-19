@@ -22,7 +22,7 @@ export class CountryFormComponent {
     });
   }
 
-  public insertCountry() {
+  public save() {
     if (this.country.id) {
       this.service.update(this.country).subscribe((data) => {
         this.country = {} as Country;

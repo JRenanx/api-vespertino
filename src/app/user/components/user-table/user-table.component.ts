@@ -19,9 +19,9 @@ export class UserTableComponent implements OnInit {
     });
   }
 
-  public selectUser(user: User) {
+  public selectItem(user: User) {
     let newUser = {...user};
-    this.service.selectUser(newUser);
+    this.service.selectItem(newUser);
   }
 
   public delete(user: User) {

@@ -19,9 +19,9 @@ export class CountryTableComponent implements OnInit {
     });
   }
 
-  public selectCountry(country: Country) {
+  public selectItem(country: Country) {
     let newCountry = {...country};
-    this.service.selectCountry(newCountry);
+    this.service.selectItem(newCountry);
   }
 
   public delete(country: Country) {

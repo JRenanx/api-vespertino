@@ -12,7 +12,7 @@ export class CountryService {
 
   private countrySubject = new Subject<Country[]>();
   public emitEvent = new EventEmitter();
-  private urlBase: string = 'http://localhost:8080/paises';
+  private urlBase: string = 'http://localhost:8080/countrys';
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -29,10 +29,10 @@ export class CountryService {
     if (name == '') {
       return this.listAll();
     } else {
-      let url = `${this.urlBase}/name/${name}`;
-      this.http.get<Country[]>(url)
-        .subscribe((country) => this.countrySubject.next(country));
-      return this.countrySubject.asObservable();
+      this.http
+      .get<Country[]>(`${this.urlBase}/name/${name}`)
+      .subscribe((countrys) => this.countrySubject.next(countrys));
+    return this.countrySubject.asObservable();
     }
   }
 
@@ -58,7 +58,7 @@ export class CountryService {
     return this.http.delete<void>(`${this.urlBase}/${country.id}`);
   };
 
-  public selectCountry(country: Country) {
+  public selectItem(country: Country) {
     this.emitEvent.emit(country);
   };
 }

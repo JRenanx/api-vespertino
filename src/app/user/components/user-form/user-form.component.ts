@@ -22,7 +22,7 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  public insertUser() {
+  public save() {
     if (this.user.id) {
       this.service.update(this.user).subscribe((data) => {
         this.user = {} as User;

@@ -5,17 +5,23 @@
             <div class="find-button">
                 <input type="text" name="name" id="name" [(ngModel)]="track.name" />
                 <button type="button" (click)="getTracksByName()">
-                    <img src="../../../../../assets/icons/filtrar.png" alt="" width="20px"/>
+                    <img src="../../../../../assets/icons/filtrar.png" alt="" width="20px" />
                 </button>
             </div>
         </label>
         <label for="size">Tamanho:
             <div class="find-button">
                 <input type="number" name="size" id="size" [(ngModel)]="track.size" />
-                            </div>
-        </label>
-        <div>
-            <button class="btn" type="button" (click)="insertTrack()" >Salvar</button>
             </div>
+        </label>
+        <select name="country" id="country" [(ngModel)]="track.pais">
+            <option value="" selected disabled>Países</option>
+            <option *ngFor="let country of countrys" [value]="country.id" name="country">
+                {{country.name}}
+            </option>
+        </select>
+        <div>
+            <button class="btn" type="button" (click)="save()">Salvar</button>
+        </div>
     </form>
 </div>

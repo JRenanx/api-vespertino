@@ -10,9 +10,9 @@
         <tr *ngFor="let track of tracks">
             <td>{{track.name}}</td>
             <td>{{track.size}}</td>
-            <td>{{track.country.name}}</td>
+            <td>{{track.pais.name}}</td>
             <td class="imgs">
-                <img src="../../../../assets/icons/editar.png" alt="" width="20px" (click)="selectTrack(track)" >
+                <img src="../../../../assets/icons/editar.png" alt="" width="20px" (click)="selectItem(track)" >
                 <img src="../../../../assets/icons/excluir.png" alt="" width="20px"(clickl)="delete(track)"  >
             </td>
         </tr>

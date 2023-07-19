@@ -12,7 +12,7 @@ export class TrackService {
 
   private trackSubject = new Subject<Track[]>();
   public emitEvent = new EventEmitter();
-  private urlBase: string = 'http://localhost:8080/pistas';
+  private urlBase: string = 'http://localhost:8080/tracks';
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -29,16 +29,17 @@ export class TrackService {
     if (name == '') {
       return this.listAll();
     } else {
-      let url = `${this.urlBase}/name/${name}`;
       this.http
-        .get<Track[]>(url)
-        .subscribe((track) => this.trackSubject.next(track));
-      return this.trackSubject.asObservable();
+      .get<Track[]>(`${this.urlBase}/name/${name}`)
+      .subscribe((users) => this.trackSubject.next(users));
+    return this.trackSubject.asObservable();
     }
   }
 
   public insert(track: Track): Observable<Track> {
-    return this.http.post<Track>(this.urlBase, track, this.httpOptions).pipe(
+    return this.http
+    .post<Track>(this.urlBase, track, this.httpOptions)
+    .pipe(
       tap(() => {
         this.listAll();
       })
@@ -59,7 +60,7 @@ export class TrackService {
     return this.http.delete<void>(`${this.urlBase}/${track.id}`);
   };
 
-  public selectTrack(track: Track) {
+  public selectItem(track: Track) {
     this.emitEvent.emit(track);
   };
 }
