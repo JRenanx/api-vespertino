@@ -24,10 +24,12 @@ export class UserFormComponent implements OnInit {
 
   public save() {
     if (this.user.id) {
+      
       this.service.update(this.user).subscribe((data) => {
         this.user = {} as User;
       });
     } else {
+      console.log(this.user);
       this.service.insert(this.user).subscribe((data) => {
         this.user = {} as User;
       });

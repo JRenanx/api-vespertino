@@ -10,6 +10,7 @@ import { MenuModule } from './menu/menu.module';
 import { UserModule } from './user/user.module';
 import { CountryModule } from './country/country.module';
 import { TrackModule } from './track/track.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TrackModule } from './track/track.module';
     MenuModule,
     UserModule,
     CountryModule,
-    TrackModule
+    TrackModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

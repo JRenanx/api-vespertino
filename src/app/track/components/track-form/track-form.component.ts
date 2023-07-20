@@ -23,14 +23,19 @@ export class TrackFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.emitEvent.subscribe({
-      next: (res: Track) => {
-        this.track = res;
-      },
-    });
     this.countryService.listAll().subscribe((country) => {
       this.countrys = country;
     });
+
+    this.service.emitEvent.subscribe({
+      next: (res: Track) => {
+        this.track = res;
+        let country = this.countrys.find((country) => this.track.country.id === country.id )
+        if(country !== undefined){
+          this.track.country = country;
+        }
+      },
+    })
   }
 
   public save(){
